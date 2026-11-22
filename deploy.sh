@@ -1,5 +1,6 @@
 #!/bin/zsh
-# Lädt die App auf GitHub (mensch-vs-tier.github.io) und auf Netlify hoch.
+# Lädt die App auf GitHub hoch; GitHub Pages veröffentlicht sie unter
+# https://mensch-vs-tier.github.io (dauert danach 1–2 Minuten).
 # Aufruf im Projektordner:  ./deploy.sh "Was geändert wurde"
 set -e
 cd "$(dirname "$0")"
@@ -12,14 +13,7 @@ NEXT=$((CUR + 1))
 sed -i '' "s/mensch-vs-tier-v$CUR/mensch-vs-tier-v$NEXT/" sw.js
 echo "Service Worker: v$CUR -> v$NEXT"
 
-# GitHub
 git add -A
-git commit -q -m "$MSG" && git push -q && echo "GitHub: hochgeladen"
-
-# Netlify: nur die App-Dateien, ohne .git und Hilfsdateien
-TMP=$(mktemp -d)
-rsync -a --exclude .git --exclude .netlify --exclude .gitignore --exclude .DS_Store \
-  --exclude deploy.sh --exclude README.md ./ "$TMP/"
-netlify deploy --prod --no-build --dir "$TMP" | grep -E "Production URL|Error" || true
-rm -rf "$TMP"
-echo "Fertig: https://mensch-vs-tier.github.io (und https://mensch-vs-tier.netlify.app)"
+git commit -q -m "$MSG"
+git push -q
+echo "Hochgeladen. In 1–2 Minuten live: https://mensch-vs-tier.github.io"
