@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0891b2"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb7c2b"/><stop offset="1" stop-color="#dc4a12"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#0d1117"/>
+  <polygon points="0,0 300,0 212,512 0,512" fill="url(#h)" opacity=".92"/>
+  <polygon points="300,0 512,0 512,512 212,512" fill="url(#a)" opacity=".92"/>
+  <polygon points="300,0 316,0 228,512 212,512" fill="#0d1117"/>
+  <!-- Mensch -->
+  <circle cx="118" cy="168" r="38" fill="#0d1117"/>
+  <path d="M62 330 q0-96 56-96 q56 0 56 96 v22 h-30 v-12 h-52 v12 h-30z" fill="#0d1117"/>
+  <!-- Tier-Pfote -->
+  <ellipse cx="392" cy="334" rx="62" ry="52" fill="#0d1117"/>
+  <ellipse cx="318" cy="238" rx="24" ry="32" fill="#0d1117" transform="rotate(-20 318 238)"/>
+  <ellipse cx="368" cy="194" rx="24" ry="33" fill="#0d1117" transform="rotate(-6 368 194)"/>
+  <ellipse cx="424" cy="194" rx="24" ry="33" fill="#0d1117" transform="rotate(6 424 194)"/>
+  <ellipse cx="470" cy="238" rx="24" ry="32" fill="#0d1117" transform="rotate(20 470 238)"/>
+  <circle cx="256" cy="452" r="44" fill="#0d1117" stroke="#f1f5f9" stroke-width="6"/>
+  <text x="256" y="470" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="48" fill="#f1f5f9" text-anchor="middle">VS</text>
+</svg>

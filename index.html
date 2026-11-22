@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Mensch vs. Tier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description" content="Wer gewinnt: Mensch oder Tier? Kampf-Simulation mit 50 Tieren.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mensch vs Tier">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="t-human">Mensch</span> <span class="t-vs">vs.</span> <span class="t-animal">Tier</span></h1>
+  </header>
+
+  <main id="main">
+    <!-- KAMPF-SETUP -->
+    <section id="view-setup" class="view active" aria-label="Kampf-Setup">
+      <button id="animalCard" class="animal-card" type="button" aria-label="Tier wechseln"></button>
+
+      <div class="card result-card">
+        <div class="result-head">
+          <div class="res-side human"><span class="res-label">Mensch</span><span class="res-val" id="humanPct">–</span></div>
+          <div class="res-side animal"><span class="res-label">Tier</span><span class="res-val" id="animalPct">–</span></div>
+        </div>
+        <div class="bar" role="img" aria-label="Gewinnwahrscheinlichkeit">
+          <div class="bar-human" id="barHuman"></div>
+          <div class="bar-animal" id="barAnimal"></div>
+        </div>
+        <ul class="factors" id="factors"></ul>
+      </div>
+
+      <div class="card params">
+        <h2>Dein Kämpfer</h2>
+
+        <div class="param">
+          <div class="param-head"><label for="weight">Körpergewicht</label><output id="weightOut">80 kg</output></div>
+          <input type="range" id="weight" min="50" max="130" step="1" value="80">
+        </div>
+
+        <div class="param">
+          <div class="param-head"><span>Fitness</span></div>
+          <div class="segment" id="fitness" role="radiogroup" aria-label="Fitness"></div>
+        </div>
+
+        <div class="param">
+          <div class="param-head"><span>Mindset</span></div>
+          <div class="segment seg3" id="mindset" role="radiogroup" aria-label="Mindset"></div>
+        </div>
+
+        <div class="param">
+          <div class="param-head"><span>Bewaffnung</span></div>
+          <div id="weapon"></div>
+        </div>
+
+        <div class="param">
+          <div class="param-head"><span>Terrain</span></div>
+          <div class="chips terrain" id="env" role="radiogroup" aria-label="Terrain"></div>
+        </div>
+      </div>
+
+      <div class="card compare">
+        <h2>Direktvergleich</h2>
+        <div class="cmp-names"><span class="human">🧍 Du</span><span class="animal" id="cmpName"></span></div>
+        <div id="compare"></div>
+      </div>
+    </section>
+
+    <!-- TIER-LEXIKON -->
+    <section id="view-lexikon" class="view" aria-label="Tier-Lexikon">
+      <div class="search-wrap">
+        <input type="search" id="lexSearch" placeholder="Tier suchen …" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="chips scroll" id="lexCats"></div>
+      <div id="lexCount" class="muted small"></div>
+      <div class="lex-grid" id="lexGrid"></div>
+    </section>
+
+    <!-- SIMULATION -->
+    <section id="view-sim" class="view" aria-label="Simulation">
+      <div class="card sim-summary" id="simSummary"></div>
+      <div class="sim-buttons">
+        <button class="btn primary" id="sim100" type="button">100 Kämpfe simulieren</button>
+        <button class="btn" id="sim1000" type="button">1.000 Kämpfe simulieren</button>
+      </div>
+      <div class="card sim-out" id="simOut" hidden>
+        <div class="sim-title" id="simTitle"></div>
+        <div class="sim-counter" id="simCounter"></div>
+        <div class="bar thin"><div class="bar-human" id="simBarH"></div><div class="bar-animal" id="simBarA"></div></div>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <div class="muted small center" id="dotsLegend"></div>
+        <h2>Beispiel-Kämpfe</h2>
+        <ul class="samples" id="samples"></ul>
+      </div>
+      <div class="card sim-empty" id="simEmpty">
+        <p>Würfle viele Kämpfe durch: Jeder Kampf bekommt Tagesform, Trefferglück und Fluchtentscheidung des Tiers.</p>
+      </div>
+    </section>
+
+    <p class="disclaimer">Unterhaltungs-Simulation, keine Sicherheitsberatung. Wildtieren immer ausweichen.</p>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Hauptnavigation">
+    <button type="button" data-view="setup" class="active"><span class="ni">⚔️</span><span>Kampf-Setup</span></button>
+    <button type="button" data-view="lexikon"><span class="ni">📖</span><span>Tier-Lexikon</span></button>
+    <button type="button" data-view="sim"><span class="ni">🎲</span><span>Simulation</span></button>
+  </nav>
+
+  <!-- TIER-PICKER (Bottom-Sheet) -->
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Tier wählen" hidden>
+    <div class="sheet-grab"></div>
+    <div class="sheet-head">
+      <input type="search" id="pickSearch" placeholder="Tier suchen …" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button type="button" class="sheet-close" id="sheetClose" aria-label="Schließen">✕</button>
+    </div>
+    <div class="chips scroll" id="pickFilters"></div>
+    <div class="chips scroll" id="pickCats"></div>
+    <div class="pick-list" id="pickList"></div>
+  </div>
+
+  <script src="animals.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
