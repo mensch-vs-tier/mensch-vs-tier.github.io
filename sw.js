@@ -1,5 +1,5 @@
 /* Cache-First Service Worker für alle App-Dateien */
-var CACHE = 'mensch-vs-tier-v4';
+var CACHE = 'mensch-vs-tier-v5';
 var FILES = ['./', 'index.html', 'styles.css', 'engine.js', 'app.js', 'game.js', 'items.js', 'animals.js', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', function (e) {
