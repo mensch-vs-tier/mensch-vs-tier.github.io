@@ -106,12 +106,15 @@
 
     <!-- SPIEL -->
     <section id="view-game" class="view" aria-label="Spiel">
-      <div class="segment" id="gameTabs" role="tablist" aria-label="Spiel-Bereich">
+      <div class="segment seg3" id="gameTabs" role="tablist" aria-label="Spiel-Bereich">
         <button type="button" role="tab" data-tab="play" class="on">Spielen</button>
         <button type="button" role="tab" data-tab="lib">Gegenstände</button>
+        <button type="button" role="tab" data-tab="profile">Profil</button>
       </div>
+      <div id="gameXp" class="g-xpbar" aria-live="polite"></div>
       <div id="gamePlay"></div>
       <div id="gameLib" hidden></div>
+      <div id="gameProfile" hidden></div>
     </section>
 
     <p class="disclaimer">Unterhaltungs-Simulation, keine Sicherheitsberatung. Wildtieren immer ausweichen.</p>
