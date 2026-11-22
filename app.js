@@ -55,11 +55,12 @@
 
   /* ---------- Navigation ---------- */
   function setView(name) {
-    ['setup', 'lexikon', 'sim'].forEach(function (v) { $('view-' + v).classList.toggle('active', v === name); });
+    ['setup', 'lexikon', 'sim', 'game'].forEach(function (v) { $('view-' + v).classList.toggle('active', v === name); });
     document.querySelectorAll('.bottom-nav button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-view') === name); });
     window.scrollTo(0, 0);
     if (name === 'lexikon') renderLex();
     if (name === 'sim') renderSimSummary();
+    if (name === 'game' && window.Game && window.Game.show) window.Game.show();
   }
   document.querySelectorAll('.bottom-nav button').forEach(function (b) {
     b.addEventListener('click', function () { setView(b.getAttribute('data-view')); });

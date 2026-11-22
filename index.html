@@ -104,6 +104,16 @@
       </div>
     </section>
 
+    <!-- SPIEL -->
+    <section id="view-game" class="view" aria-label="Spiel">
+      <div class="segment" id="gameTabs" role="tablist" aria-label="Spiel-Bereich">
+        <button type="button" role="tab" data-tab="play" class="on">Spielen</button>
+        <button type="button" role="tab" data-tab="lib">Gegenstände</button>
+      </div>
+      <div id="gamePlay"></div>
+      <div id="gameLib" hidden></div>
+    </section>
+
     <p class="disclaimer">Unterhaltungs-Simulation, keine Sicherheitsberatung. Wildtieren immer ausweichen.</p>
   </main>
 
@@ -111,6 +121,7 @@
     <button type="button" data-view="setup" class="active"><span class="ni">⚔️</span><span>Kampf-Setup</span></button>
     <button type="button" data-view="lexikon"><span class="ni">📖</span><span>Tier-Lexikon</span></button>
     <button type="button" data-view="sim"><span class="ni">🎲</span><span>Simulation</span></button>
+    <button type="button" data-view="game"><span class="ni">🎮</span><span>Spiel</span></button>
   </nav>
 
   <!-- TIER-PICKER (Bottom-Sheet) -->
@@ -128,6 +139,8 @@
 
   <script src="animals.js"></script>
   <script src="engine.js"></script>
+  <script src="items.js"></script>
+  <script src="game.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
