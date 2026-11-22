@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Lädt die App auf GitHub (Backup + GitHub Pages) und auf Netlify hoch.
+# Lädt die App auf GitHub (mensch-vs-tier.github.io) und auf Netlify hoch.
 # Aufruf im Projektordner:  ./deploy.sh "Was geändert wurde"
 set -e
 cd "$(dirname "$0")"
@@ -22,4 +22,4 @@ rsync -a --exclude .git --exclude .netlify --exclude .gitignore --exclude .DS_St
   --exclude deploy.sh --exclude README.md ./ "$TMP/"
 netlify deploy --prod --no-build --dir "$TMP" | grep -E "Production URL|Error" || true
 rm -rf "$TMP"
-echo "Fertig: https://mensch-vs-tier.netlify.app"
+echo "Fertig: https://mensch-vs-tier.github.io (und https://mensch-vs-tier.netlify.app)"
